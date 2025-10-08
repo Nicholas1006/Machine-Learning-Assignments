@@ -9,26 +9,43 @@ X2=df.iloc[:,1]
 X=np.column_stack((X1,X2))
 y=df.iloc[:,2]
 
+matplotlib.pyplot.figure()
+
+positive=X[y==1]
+negative=X[y==-1]
+
+#matplotlib.pyplot.scatter(positive[:, 0], positive[:, 1],color="blue",marker="+")
+#matplotlib.pyplot.scatter(negative[:, 0], negative[:, 1],color="lightgreen", marker="+")
+
+
+#matplotlib.pyplot.xlabel("x_1")
+#matplotlib.pyplot.ylabel("x_2")
+#matplotlib.pyplot.legend(["positive","negative"])
+#matplotlib.pyplot.show()
+
+
 from sklearn.linear_model import LogisticRegression
 model = LogisticRegression().fit(X, y)
 print("Intercept",model.intercept_)
 print("X1 coefficient",model.coef_[0][0])
 print("X2 coefficient",model.coef_[0][1])
 
+intercept = -model.intercept_[0] / model.coef_[0][1]
+slope = -model.coef_[0][0] / model.coef_[0][1]
 
+# y = mx + c
+# y = (slope*x) + intercept
+decision_boundary = (slope*X[:, 0]) + intercept
+matplotlib.pyplot.plot(X[:, 0], decision_boundary, color="red", linewidth=2, label="Decision Boundary")
 
-matplotlib.pyplot.figure()
+y_prediction=model.predict(X)
+correctPositive=X[(y==1) & (y_prediction==1)]
+wrongPosive=X[(y==1) & (y_prediction==-1)]
+correctNegative=X[(y==-1) & (y_prediction==-1)]
+wrongNegative=X[(y==-1) & (y_prediction==1)]
 
-positive=X[y==1]
-negative=X[y==-1]
-
-matplotlib.pyplot.scatter(positive[:, 0], positive[:, 1],color="blue",marker="+")
-matplotlib.pyplot.scatter(negative[:, 0], negative[:, 1],color="lightgreen", marker="+")
-
-
-matplotlib.pyplot.xlabel("x_1")
-matplotlib.pyplot.ylabel("x_2")
-matplotlib.pyplot.legend(["positive","negative"])
+matplotlib.pyplot.scatter(correctPositive[:, 0], correctPositive[:, 1], color="blue", marker="+", label="Correct +1 Prediction")
+matplotlib.pyplot.scatter(wrongPosive[:, 0], wrongPosive[:, 1], color="darkblue", marker="+", label="Incorrect +1 Prediction")
+matplotlib.pyplot.scatter(correctNegative[:, 0], correctNegative[:, 1], color="lightgreen", marker="+", label="Correct -1 Prediction")
+matplotlib.pyplot.scatter(wrongNegative[:, 0], wrongNegative[:, 1], color="green", marker="+", label="Incorrect -1 Prediction")
 matplotlib.pyplot.show()
-
-
