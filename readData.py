@@ -55,27 +55,46 @@ if(QUESTION2):
 
 
 from sklearn.svm import LinearSVC
-
-for C_value in [0.00001,0.001, 1.0, 100.0,1000000.0]:
-    model_svm = LinearSVC(C=C_value).fit(X, y)
-    print("SVM with C =",C_value)
-    print("Intercept",model_svm.intercept_)
-    print("X1 coefficient",model_svm.coef_[0][0])
-    print("X2 coefficient",model_svm.coef_[0][1])
-    print("")
+axes = matplotlib.pyplot.subplots(2, 3, figsize=(15, 10))[1]
+axes = axes.ravel()
+C_values=[0.00001,0.001,0.01, 1.0, 100.0]
+for i in range(0,len(C_values)):
+    C_val = C_values[i]
+    # Train SVM model
+    model_svm = LinearSVC(C=C_val).fit(X, y)
     
+    # Make predictions
+    y_pred = model_svm.predict(X)
+    
+    # Calculate decision boundary
     intercept_svm = -model_svm.intercept_[0] / model_svm.coef_[0][1]
     slope_svm = -model_svm.coef_[0][0] / model_svm.coef_[0][1]
     decision_boundary_svm = (slope_svm * X[:, 0]) + intercept_svm
     
-    matplotlib.pyplot.plot(X[:, 0], decision_boundary_svm, linewidth=2, label=("SVM C=,"+str(C_value)))
+    # Plot on subplot
+    ax = axes[i]
+    
+    # Plot data points with predictions
+    correctPositive = X[(y == 1) & (y_pred == 1)]
+    wrongPosive = X[(y == 1) & (y_pred == -1)]
+    correctNegative = X[(y == -1) & (y_pred == -1)]
+    wrongNegative = X[(y == -1) & (y_pred == 1)]
+    
+    ax.scatter(correctPositive[:, 0], correctPositive[:, 1], color="blue", marker="+", label="Correct +1 Prediction")
+    ax.scatter(wrongPosive[:, 0], wrongPosive[:, 1], color="darkblue", marker="+", label="Incorrect +1 Prediction")
+    ax.scatter(correctNegative[:, 0], correctNegative[:, 1], color="lightgreen", marker="+", label="Correct -1 Prediction")
+    ax.scatter(wrongNegative[:, 0], wrongNegative[:, 1], color="green", marker="+", label="Incorrect -1 Prediction")
+    
+    # Plot decision boundary
+    ax.plot(X[:, 0], decision_boundary_svm, color="red", linewidth=2, label="Decision Boundary")
+    
+    ax.set_title("SVM with C="+str(C_val))
+    ax.set_xlabel("x_1")
+    ax.set_ylabel("x_2")
+    ax.legend(["decision boundary","correct +1 prediction","incorrect +1 prediction","correct -1 prediction","incorrect -1 prediction"])
 
+# Remove empty subplot if needed
+axes[5].set_visible(False)
 
-# Plot the data points
-matplotlib.pyplot.scatter(positive[:, 0], positive[:, 1], color="blue", marker="+", label="Positive")
-matplotlib.pyplot.scatter(negative[:, 0], negative[:, 1], color="lightgreen", marker="+", label="Negative")
-
-matplotlib.pyplot.xlabel("x_1")
-matplotlib.pyplot.ylabel("x_2")
-matplotlib.pyplot.legend()
+matplotlib.pyplot.tight_layout()
 matplotlib.pyplot.show()
