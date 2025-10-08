@@ -121,3 +121,8 @@ matplotlib.pyplot.ylabel("x_2")
 matplotlib.pyplot.title("Logistic Regression with Squared Features - Predictions")
 matplotlib.pyplot.legend()
 matplotlib.pyplot.show()
+
+
+
+print(len(wrongNegative_extended)+len(wrongPositive_extended) , len(correctNegative_extended)+len(correctPositive_extended))
+print(len(X[y==1]) , len(X[y==-1]))
