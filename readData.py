@@ -48,4 +48,5 @@ matplotlib.pyplot.scatter(correctPositive[:, 0], correctPositive[:, 1], color="b
 matplotlib.pyplot.scatter(wrongPosive[:, 0], wrongPosive[:, 1], color="darkblue", marker="+", label="Incorrect +1 Prediction")
 matplotlib.pyplot.scatter(correctNegative[:, 0], correctNegative[:, 1], color="lightgreen", marker="+", label="Correct -1 Prediction")
 matplotlib.pyplot.scatter(wrongNegative[:, 0], wrongNegative[:, 1], color="green", marker="+", label="Incorrect -1 Prediction")
+matplotlib.pyplot.legend(["decision boundary","correct +1 prediction","incorrect +1 prediction","correct -1 prediction","incorrect -1 prediction"])
 matplotlib.pyplot.show()
