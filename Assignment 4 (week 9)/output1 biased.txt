@@ -1,0 +1,61 @@
+# hyperparameters
+batch_size = 64 # how many independent sequences will we process in parallel?
+block_size = 256 # what is the maximum context length for predictions?
+max_iters = 1000
+eval_interval = 50
+learning_rate = 3e-4
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+print("Using device ",device)
+eval_iters = 200
+n_embd = 128
+n_head = 6
+n_layer = 3
+dropout = 0.2
+# ------------
+
+0.63503 M parameters
+step 0: train loss 3.8190, val loss 3.8184
+step 50: train loss 2.3624, val loss 2.3635
+step 100: train loss 2.1204, val loss 2.1261
+step 150: train loss 1.9583, val loss 1.9669
+step 200: train loss 1.7599, val loss 1.7732
+step 250: train loss 1.2942, val loss 1.3074
+step 300: train loss 0.5482, val loss 0.5515
+step 350: train loss 0.4108, val loss 0.4139
+step 400: train loss 0.3745, val loss 0.3783
+step 450: train loss 0.3605, val loss 0.3642
+step 500: train loss 0.3555, val loss 0.3591
+step 550: train loss 0.3536, val loss 0.3572
+step 600: train loss 0.3487, val loss 0.3519
+step 650: train loss 0.3466, val loss 0.3504
+step 700: train loss 0.3454, val loss 0.3499
+step 750: train loss 0.3438, val loss 0.3462
+step 800: train loss 0.3417, val loss 0.3452
+step 850: train loss 0.3409, val loss 0.3446
+step 900: train loss 0.3423, val loss 0.3450
+step 950: train loss 0.3417, val loss 0.3454
+step 999: train loss 0.3391, val loss 0.3411
+
+I dance Wherere ball
+I run fast No like it
+I did it Go park
+All gone Go park
+No touch I want cookie
+Uh oh spill Yumy apple
+More bubbles Shoes on
+Shoes on What is that
+I draw All done
+Big hug I run fast
+What is that Yumy apple
+Mama I want plant more juice please
+No touch I wash h handds
+Go My pamesauig bo
+I sing Look mmos I found it
+I want t more juice p Look moob
+Wherill Shoes on
+Big truck What is that
+I foundnce All done
+Mama More bubbbles I want cookie My tedddy
+I jump I love you
+I want more j
+Time taken =  339.03131794929504 s

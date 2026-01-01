@@ -1,0 +1,56 @@
+# hyperparameters
+batch_size = 64 # how many independent sequences will we process in parallel?
+block_size = 256 # what is the maximum context length for predictions?
+max_iters = 1000
+eval_interval = 50
+learning_rate = 3e-4
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+print("Using device ",device)
+eval_iters = 200
+n_embd = 96
+n_head = 6
+n_layer = 6
+dropout = 0.2
+# ------------
+
+0.703528 M parameters
+step 0: train loss 3.6712, val loss 3.6706
+step 50: train loss 2.5561, val loss 2.5585
+step 100: train loss 2.2591, val loss 2.2607
+step 150: train loss 2.0697, val loss 2.0771
+step 200: train loss 1.8793, val loss 1.8896
+step 250: train loss 1.6688, val loss 1.6816
+step 300: train loss 1.2629, val loss 1.2771
+step 350: train loss 0.6310, val loss 0.6369
+step 400: train loss 0.4522, val loss 0.4553
+step 450: train loss 0.3985, val loss 0.4013
+step 500: train loss 0.3789, val loss 0.3822
+step 550: train loss 0.3663, val loss 0.3684
+step 600: train loss 0.3569, val loss 0.3587
+step 650: train loss 0.3527, val loss 0.3560
+step 700: train loss 0.3498, val loss 0.3530
+step 750: train loss 0.3452, val loss 0.3479
+step 800: train loss 0.3441, val loss 0.3459
+step 850: train loss 0.3411, val loss 0.3446
+step 900: train loss 0.3408, val loss 0.3448
+step 950: train loss 0.3392, val loss 0.3418
+step 999: train loss 0.3383, val loss 0.3417
+
+Chere me I hide
+I tired w more juice please
+I climb I climb
+I see bird Read bad book
+More bubbbles I se bird
+I sing I did it
+I found it Daddy read me dinosaur book before bed No stop
+I want that I wash hands
+Big hug Where kitty go
+Where ball No nap
+No mine I want that I jump
+I wash hands Mama I want play with big red ball outside I want pleash Night
+I jump Saw big flufffy doggy at park it run fast
+I love you No touch
+Saw big fluffy dogggy at park it run fast Go park
+Help me please I day hunds
+No
+Time taken =  579.4247119426727 s
