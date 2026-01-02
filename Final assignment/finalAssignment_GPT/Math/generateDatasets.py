@@ -1,11 +1,11 @@
 import random
 import itertools
 
-def generate_math_dataset(num_samples=50000, biggest_number=99, operationCountsAllowerd=[2,3], all_operators=['+', '-', '*', '/']):
+def generate_math_dataset(num_samples=50000, biggest_number=99, operationCountsAllowed=[2,3], all_operators=['+', '-', '*', '/']):
     dataset = []
     
     while len(dataset) < num_samples:
-        num_operands = operationCountsAllowerd[random.randint(0, len(operationCountsAllowerd)-1)]
+        num_operands = random.choice(operationCountsAllowed)
         operators = [random.choice(all_operators) for _ in range(num_operands - 1)]
         result = biggest_number+1
         
@@ -32,12 +32,12 @@ def generate_math_dataset(num_samples=50000, biggest_number=99, operationCountsA
     return dataset
 
 
-def generate_all_math_values(biggest_number=99, operationCountsAllowerd=3):
+def generate_all_math_values(biggest_number=99, operationCountsAllowed=3):
     dataset=[]
     all_operators = ['+', '-', '*', '/']
     all_values = list(range(0,biggest_number))
 
-    for operation_amount in range(2, operationCountsAllowerd+1):
+    for operation_amount in range(2, operationCountsAllowed+1):
         if(operation_amount==2):
             operations=itertools.product(all_values,all_operators,all_values)
         elif(operation_amount==3):
@@ -62,43 +62,43 @@ def save_dataset(data, filename):
         for line in data:
             f.write(line + '\n')
 
-dataset = generate_math_dataset(num_samples=50000, biggest_number=99, operationCountsAllowerd=[2,3])
+dataset = generate_math_dataset(num_samples=50000, biggest_number=99, operationCountsAllowed=[2,3])
+save_dataset(dataset, 'train.txt')
+print("Generated ",len(dataset)," size dataset")
+
+dataset = generate_math_dataset(num_samples=100, biggest_number=99, operationCountsAllowed=[2,3])
 save_dataset(dataset, 'test/all.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100, biggest_number=99, operationCountsAllowerd=[2,3])
-save_dataset(dataset, 'test/all.txt')
-print("Generated ",len(dataset)," size dataset")
 
-
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[2],all_operators=["+"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[2],all_operators=["+"])
 save_dataset(dataset, 'test/addition.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[2],all_operators=["-"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[2],all_operators=["-"])
 save_dataset(dataset, 'test/subtraction.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[2],all_operators=["*"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[2],all_operators=["*"])
 save_dataset(dataset, 'test/multiplication.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[2],all_operators=["/"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[2],all_operators=["/"])
 save_dataset(dataset, 'test/division.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[3],all_operators=["+"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[3],all_operators=["+"])
 save_dataset(dataset, 'test/addition3.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[3],all_operators=["-"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[3],all_operators=["-"])
 save_dataset(dataset, 'test/subtraction3.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[3],all_operators=["*"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[3],all_operators=["*"])
 save_dataset(dataset, 'test/multiplication3.txt')
 print("Generated ",len(dataset)," size dataset")
 
-dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowerd=[3],all_operators=["/"])
+dataset = generate_math_dataset(num_samples=100,biggest_number=99, operationCountsAllowed=[3],all_operators=["/"])
 save_dataset(dataset, 'test/division3.txt')
 print("Generated ",len(dataset)," size dataset")
